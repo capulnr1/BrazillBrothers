@@ -1,0 +1,51 @@
+<apex:page StandardController="Project__c" Extensions="CreateOppsCtrl" id="pg">
+<style>
+    .nw {white-space:nowrap;}
+</style>
+<apex:pageMessages rendered="false"/>
+<apex:form >
+<apex:pageBlock >
+    
+    <apex:pageBlockButtons >
+        <apex:commandButton action="{!saveAll}" value="Save" immediate="false"/>
+        <apex:commandButton action="{!canc}" value="Cancel" immediate="true"/>
+    </apex:pageBlockButtons>
+
+    <apex:pageBlockTable var="opp" value="{!OppList}">
+        
+        <apex:column headerValue="Principal">
+            <div class="nw">
+                <apex:outputField value="{!Opp.Principal__c}"/>
+            </div>
+        </apex:column>
+        
+        <apex:column headerValue="Opportunity Name">
+            <div class="nw">
+                <apex:outputField value="{!Opp.Name}"/>
+            </div>
+        </apex:column>
+
+        <apex:column headerValue="Contractor">
+            <apex:inputField required="false" value="{!Opp.AccountId}"/>
+        </apex:column> <!-- {!Opp.Amount != null && Opp.Amount != 0} -->
+        
+        <apex:column headerValue="Distributor">
+            <apex:inputField value="{!Opp.Distributor__c}"/>
+        </apex:column>
+        
+        <apex:column headerValue="Stage ">
+            <apex:inputField value="{!Opp.StageName}"/>
+        </apex:column>
+        
+        <apex:column headerValue="Close Date">
+            <apex:inputField value="{!Opp.CloseDate}"/>
+        </apex:column>
+        
+        <apex:column headerValue="Amount">
+            <apex:inputField value="{!Opp.Amount}"/>
+        </apex:column>
+    
+    </apex:pageBlockTable>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

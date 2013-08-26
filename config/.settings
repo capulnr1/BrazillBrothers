@@ -1,0 +1,17 @@
+{
+    "username": "madrona.consultant@brazill.com.devbox", 
+    "project_name": "Brazill Brothers", 
+    "namespace": "", 
+    "metadata_container": "1dcZ00000008UkyIAE", 
+    "environment": "sandbox", 
+    "id": "TU91YKFY0D5WN1ALZBIKGFP5CQ074PWF", 
+    "subscription": [
+        "ApexClass", 
+        "ApexComponent", 
+        "ApexPage", 
+        "ApexTrigger", 
+        "CustomObject", 
+        "Profile", 
+        "StaticResource"
+    ]
+}

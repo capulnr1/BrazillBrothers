@@ -1,0 +1,44 @@
+<apex:page controller="CIPCtrl">
+    <apex:form >
+        <apex:outputPanel id="firstBlock">
+            <apex:pageBlock title="Sales Import Setup" id="profileBlock">
+                <apex:pageMessages id="msgs" />
+                
+                <apex:pageBlockSection collapsible="false" columns="2" title="Load Profile" >
+                    <apex:panelGrid columns="2"> 
+                        <apex:outputLabel value="Profiles: "/>
+                        <apex:outputText >
+                            <apex:selectList value="{!profile}" size="1">
+                                <apex:selectOptions value="{!profiles}"/>  
+                                <apex:actionSupport event="onchange" action="{!getSettings}" reRender="profileBlock" status="changeStatus"/>
+                            </apex:selectList>
+                            <apex:actionStatus startText=" (changing profiles...)" id="changeStatus"/>
+                            <apex:actionStatus startText=" (saving...)" id="saveStatus"/>
+                            <apex:actionStatus startText=" (deleting...)" id="deleteStatus"/>
+                        </apex:outputText>
+                        <apex:outputText value="Start At Row:"/>
+                        <apex:inputField value="{!start.CSV_Position__c}" style="width:25px"/>
+                        <!--<apex:outputText value="Sale Date:"/>
+                        <apex:inputField value="{!importDate.CSV_Position__c}" style="width:25px"/>-->
+                    </apex:panelGrid>
+                    <apex:outputText />
+                </apex:pageBlockSection>
+                
+                <apex:pageBlockSection collapsible="false" columns="2" title="Column Sequence" >
+                    <apex:repeat value="{!settingList}" var="c">
+                        <apex:pageBlockSectionItem >
+                            <apex:outputText value="{!c.label}:"/>
+                            <apex:inputField value="{!c.ip.CSV_Position__c}" style="width:25px"/>
+                        </apex:pageBlockSectionItem>
+                    </apex:repeat>
+                </apex:pageBlockSection>
+                
+                <apex:pageBlockButtons location="both" style="float:left">
+                    <apex:commandButton value="Save" action="{!save}" rerender="msgs, firstBlock" status="saveStatus"/>
+                    <!--<apex:commandButton value="Clear" action="{!clear}" rerender="msgs, firstBlock" status="clearStatus"/>-->
+                    <apex:commandButton value="Delete Profile" action="{!deleteProfile}" rerender="msgs, firstBlock" status="deleteStatus"/>
+                </apex:pageBlockButtons>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>
